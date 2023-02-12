@@ -8,15 +8,21 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
-    password: {
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
+  },
+  password: {
     type: String,
     required: true,
     minlength: 5,
   },
-  comments: [
+  thoughts: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Comment',
+      ref: 'Thought',
     },
   ],
 });
