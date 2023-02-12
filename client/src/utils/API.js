@@ -6,4 +6,4 @@ axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasIm
 const artobject = async (oid)=>
 axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${oid}`);
 
-export default { search, artsearch, artobject };
+export default { artsearch, artobject };
