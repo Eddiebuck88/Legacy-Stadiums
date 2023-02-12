@@ -76,6 +76,7 @@ function App() {
             </Routes>
           </div>
           <ArtContainer />
+          <SingleThought />
           <Footer />
         </div>
       </Router>

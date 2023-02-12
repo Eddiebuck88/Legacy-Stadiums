@@ -42,7 +42,7 @@ const ArtContainer = () => {
   // Destructure the result object to make the code more readable, assign them to empty strings to start
   const {
     title = '',
-    primaryImage = '',
+    primaryImageSmall = '',
     artistDisplayName = '',
     department = '',
     accessionYear = '',
@@ -60,7 +60,7 @@ const ArtContainer = () => {
             {title ? (
               <ArtDetail
                 title={title}
-                src={primaryImage}
+                src={primaryImageSmall}
                 director={artistDisplayName}
                 genre={department}
                 released={accessionYear}
