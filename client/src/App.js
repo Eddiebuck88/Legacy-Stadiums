@@ -15,6 +15,7 @@ import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ArtContainer from './components/ArtContainer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -74,6 +75,7 @@ function App() {
               />
             </Routes>
           </div>
+          <ArtContainer />
           <Footer />
         </div>
       </Router>
