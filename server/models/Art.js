@@ -2,18 +2,24 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const thoughtSchema = new Schema({
-  thoughtText: {
-    type: String,
-    required: 'You need to leave a thought!',
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
-  },
-  thoughtAuthor: {
-    type: String,
+  // thoughtText: {
+  //   type: String,
+  //   required: 'You need to leave a thought!',
+  //   minlength: 1,
+  //   maxlength: 280,
+  //   trim: true,
+  // },
+  // thoughtAuthor: {
+  //   type: String,
+  //   required: true,
+  //   trim: true,
+  // },
+  objectId :{
+    type: integer, 
     required: true,
-    trim: true,
   },
+  
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -40,6 +46,6 @@ const thoughtSchema = new Schema({
   ],
 });
 
-const Thought = model('Thought', thoughtSchema);
+const Art = model('Art', artSchema);
 
-module.exports = Thought;
+module.exports = Art;
