@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema({
+const artSchema = new Schema({
   // thoughtText: {
   //   type: String,
   //   required: 'You need to leave a thought!',
@@ -9,13 +9,13 @@ const thoughtSchema = new Schema({
   //   maxlength: 280,
   //   trim: true,
   // },
-  // thoughtAuthor: {
-  //   type: String,
-  //   required: true,
-  //   trim: true,
-  // },
-  objectId :{
-    type: integer, 
+   //artAuthor: {
+    // type: String,
+     //required: true,
+     //trim: true,
+   //},
+  artId :{
+    type: String, 
     required: true,
   },
   

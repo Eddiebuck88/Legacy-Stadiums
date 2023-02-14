@@ -14,7 +14,7 @@ const resolvers = {
       const params = username ? { username } : {};
       return Art.find(params).sort({ createdAt: -1 });
     },
-    art: async (parent, { artId }) => {
+    artSingle: async (parent, { artId }) => {
       return Art.findOne({ _id: artId });
     },
     me: async (parent, args, context) => {
@@ -51,7 +51,7 @@ const resolvers = {
     addArt: async (parent, { artText }, context) => {
       if (context.user) {
         const art = await Art.create({
-          artText,
+          artId,
           artAuthor: context.user.username,
         });
 

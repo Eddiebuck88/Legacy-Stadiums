@@ -13,7 +13,7 @@ const ArtContainer = () => {
   const [search, setSearch] = useState('');
 
   // When the search form is submitted, use the API.search method to search for the movie(s)
-  const searchMovie = (query) => 
+  const searchArt = (query) => 
     API.artsearch(query)
       .then((res) => { console.log(res.data)
         API.artobject(res.data.objectIDs[0])
@@ -24,7 +24,7 @@ const ArtContainer = () => {
 
   // useEffect hook runs on startup only. starts with a preset movie
   useEffect(() => {
-    searchMovie('Scream');
+    searchArt('Scream');
   },[]);
 
   // handleInputChange lets you type in the search textbox
@@ -36,7 +36,7 @@ const ArtContainer = () => {
   //  Fix the handleFormSubmit function not actually searching for the movie
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    searchMovie(search);
+    searchArt(search);
   };
 
   // Destructure the result object to make the code more readable, assign them to empty strings to start
@@ -56,7 +56,7 @@ const ArtContainer = () => {
     <Container>
       <Row>
         <Col size="md-8">
-          <Card heading={title || 'Search for a Movie to Begin'}>
+          <Card heading={title || 'Search for art Begin'}>
             {title ? (
               <ArtDetail
                 title={title}
