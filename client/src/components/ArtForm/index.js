@@ -4,11 +4,13 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_ART } from '../../utils/mutations';
 import { QUERY_ART, QUERY_ME } from '../../utils/queries';
-
+import API from '../../utils/API';
 import Auth from '../../utils/auth';
 
+
+
 const ArtForm = () => {
-  const [artText, setArtText] = useState('');
+  const [artId, setArtId] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -37,25 +39,49 @@ const ArtForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    try {
+    // api fetch 
+    API.artobject(artId)
+         .then((res) => {
+           console.log(res.data) 
+          /*  const data=res.data;
+          try {
+            const { data } = await addArt({
+              variables: {
+                artId,
+                artAuthor: Auth.getProfile().data.username,
+              },
+            })
+      
+            setArtId('');
+          }
+          
+           catch (err) {
+            console.error(err);
+          }
+         }; */
+         
+      })
+         .catch((err) => console.log(err)); 
+
+    /* try {
       const { data } = await addArt({
         variables: {
-          artText,
+          artId,
           artAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setArtText('');
+      setArtId('');
     } catch (err) {
       console.error(err);
-    }
-  };
+    } */
+  }; 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'artText' && value.length <= 280) {
-      setArtText(value);
+    if (name === 'artId' && value.length <= 280) {
+      setArtId(value);
       setCharacterCount(value.length);
     }
   };
@@ -79,9 +105,9 @@ const ArtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="artText"
+                name="artId"
                 placeholder="Here's some new art..."
-                value={artText}
+                value={artId}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -90,7 +116,7 @@ const ArtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add 
+                Submit 
               </button>
             </div>
             {error && (
