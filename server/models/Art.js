@@ -9,17 +9,23 @@ const artSchema = new Schema({
   //   maxlength: 280,
   //   trim: true,
   // },
-   //artAuthor: {
-    // type: String,
-     //required: true,
-     //trim: true,
-   //},
+   artAuthor: {
+     type: String,
+    required: true,
+    trim: true,
+   },
+  artImage :{
+    type: String, 
+  },
+  
   artId :{
     type: String, 
     required: true,
   },
+  artDescription :{
+    type: String, 
+  },
   
-
   createdAt: {
     type: Date,
     default: Date.now,
