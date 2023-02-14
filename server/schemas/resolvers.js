@@ -48,7 +48,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addArt: async (parent, { artText }, context) => {
+    addArt: async (parent, { artId }, context) => {
+      try {
+
+      
       if (context.user) {
         const art = await Art.create({
           artId,
@@ -63,6 +66,10 @@ const resolvers = {
         return art;
       }
       throw new AuthenticationError('You need to be logged in!');
+    } catch (err){
+      console.log(err);
+      throw new AuthenticationError(err);
+    }
     },
     addComment: async (parent, { artId, commentText }, context) => {
       if (context.user) {

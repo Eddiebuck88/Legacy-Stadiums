@@ -25,25 +25,18 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_ART = gql`
-  mutation addArt($artText: String!) {
-    addArt(artText: $artText) {
-      _id
-      artText
-      artAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
+mutation AddArt($artId: Int!) {
+  addArt(artId: $artId) {
+    _id
   }
+}
 `;
 
 export const ADD_COMMENT = gql`
   mutation addComment($thoughtId: ID!, $commentText: String!) {
     addComment(artId: $artId, commentText: $commentText) {
       _id
-      artText
+      artId
       artAuthor
       createdAt
       comments {
