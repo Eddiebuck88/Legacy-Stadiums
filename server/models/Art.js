@@ -9,13 +9,13 @@ const artSchema = new Schema({
   //   maxlength: 280,
   //   trim: true,
   // },
-  // thoughtAuthor: {
-  //   type: String,
-  //   required: true,
-  //   trim: true,
-  // },
+   //artAuthor: {
+    // type: String,
+     //required: true,
+     //trim: true,
+   //},
   artId :{
-    type: Number, 
+    type: String, 
     required: true,
   },
   

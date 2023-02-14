@@ -28,7 +28,7 @@ export const QUERY_ART = gql`
 
 export const QUERY_SINGLE_ART = gql`
   query getSingleArt($artId: ID!) {
-    art(artId: $artId) {
+    artSingle(artId: $artId) {
       _id
       artText
       artAuthor

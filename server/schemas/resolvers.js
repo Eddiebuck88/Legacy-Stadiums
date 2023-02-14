@@ -51,7 +51,7 @@ const resolvers = {
     addArt: async (parent, { artText }, context) => {
       if (context.user) {
         const art = await Art.create({
-          artText,
+          artId,
           artAuthor: context.user.username,
         });
 

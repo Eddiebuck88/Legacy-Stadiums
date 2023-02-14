@@ -41,7 +41,7 @@ const ArtList = ({
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${art._id}`}
+              to={`/art/${art._id}`}
             >
               Join the discussion on this.
             </Link>

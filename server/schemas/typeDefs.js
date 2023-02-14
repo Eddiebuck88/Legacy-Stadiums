@@ -11,7 +11,7 @@ const typeDefs = gql`
 
   type Art {
     _id: ID
-    artText: String
+    artId: String
     artAuthor: String
     createdAt: String
     comments: [Comment]!
@@ -40,7 +40,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addArt(artText: String!): Art
+    addArt(artId: String!): Art
     addComment(artId: ID!, commentText: String!): Art
     removeArt(artId: ID!): Art
     removeComment(artId: ID!, commentId: ID!): Art
