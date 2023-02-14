@@ -43,6 +43,15 @@ const ArtForm = () => {
     API.artobject(artId)
          .then((res) => {
            console.log(res.data) 
+           let dataTwo = res.data
+
+            { dataTwo } = await addArt({
+            variables: {
+              artId,
+              artAuthor: Auth.getProfile().data.username,
+            },
+          })
+
           /*  const data=res.data;
           try {
             const { data } = await addArt({
