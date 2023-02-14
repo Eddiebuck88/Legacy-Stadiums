@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import ArtForm from '../components/ArtForm';
-import ArtList from '../components/ArttList';
+import ArtList from '../components/ArtList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 

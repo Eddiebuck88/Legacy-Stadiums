@@ -14,8 +14,8 @@ const artSchema = new Schema({
   //   required: true,
   //   trim: true,
   // },
-  objectId :{
-    type: integer, 
+  artId :{
+    type: Number, 
     required: true,
   },
   
