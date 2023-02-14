@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
-import { ADD_ART } from '../../utils/mutations';
-import { QUERY_ART, QUERY_ME } from '../../utils/queries';
-import API from '../../utils/API';
-import Auth from '../../utils/auth';
-
-
+import { ADD_ART } from "../../utils/mutations";
+import { QUERY_ART, QUERY_ME } from "../../utils/queries";
+import API from "../../utils/API";
+import Auth from "../../utils/auth";
 
 const ArtForm = () => {
-  const [artId, setArtId] = useState('');
+  const [artId, setArtId] = useState("");
 
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addArt, { error }] = useMutation(ADD_ART, {
-    update(cache, { data: { addArt } }) {
+   /* update(cache, { data: { addArt } }) {
       try {
         const { art } = cache.readQuery({ query: QUERY_ART });
 
@@ -33,63 +31,35 @@ const ArtForm = () => {
         query: QUERY_ME,
         data: { me: { ...me, art: [...me.art, addArt] } },
       });
-    },
+    }, */ 
   });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // api fetch 
-    API.artobject(artId)
-         .then((res) => {
-           console.log(res.data) 
-           let dataTwo = res.data
+    // api fetch
+    API.artobject(artId).then(async (res) => {
+      console.log(res.data);
+      const paintingId = res.data.objectId
+      try {
+        const { data } = await addArt({
+          variables: {
+            artId: paintingId,
+            
+          },
+        });
 
-            { dataTwo } = await addArt({
-            variables: {
-              artId,
-              artAuthor: Auth.getProfile().data.username,
-            },
-          })
-
-          /*  const data=res.data;
-          try {
-            const { data } = await addArt({
-              variables: {
-                artId,
-                artAuthor: Auth.getProfile().data.username,
-              },
-            })
-      
-            setArtId('');
-          }
-          
-           catch (err) {
-            console.error(err);
-          }
-         }; */
-         
-      })
-         .catch((err) => console.log(err)); 
-
-    /* try {
-      const { data } = await addArt({
-        variables: {
-          artId,
-          artAuthor: Auth.getProfile().data.username,
-        },
-      });
-
-      setArtId('');
-    } catch (err) {
-      console.error(err);
-    } */
-  }; 
+        setArtId("");
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'artId' && value.length <= 280) {
+    if (name === "artId" && value.length <= 280) {
       setArtId(value);
       setCharacterCount(value.length);
     }
@@ -103,7 +73,7 @@ const ArtForm = () => {
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              characterCount === 280 || error ? "text-danger" : ""
             }`}
           >
             Character Count: {characterCount}/280
@@ -118,14 +88,14 @@ const ArtForm = () => {
                 placeholder="Here's some new art..."
                 value={artId}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
               ></textarea>
             </div>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Submit 
+                Submit
               </button>
             </div>
             {error && (
@@ -137,7 +107,7 @@ const ArtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your thoughts. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
