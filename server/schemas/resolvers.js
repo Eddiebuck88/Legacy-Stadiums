@@ -48,14 +48,17 @@ const resolvers = {
 
       return { token, user };
     },
-    addArt: async (parent, { artId }, context) => {
+    addArt: async (parent, { artId, artImage, artDescription }, context) => {
       try {
+        console.log("We're adding art!")
 
-      
+      console.log(context.user)
+
       if (context.user) {
         const art = await Art.create({
           artId,
           artAuthor: context.user.username,
+          artImage, artDescription
         });
 
         await User.findOneAndUpdate(
@@ -65,7 +68,7 @@ const resolvers = {
 
         return art;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      
     } catch (err){
       console.log(err);
       throw new AuthenticationError(err);

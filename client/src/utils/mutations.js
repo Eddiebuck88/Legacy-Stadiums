@@ -25,9 +25,13 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_ART = gql`
-mutation AddArt($artId: Int!) {
-  addArt(artId: $artId) {
+mutation addArt($artId: String!, $artImage: String, $artDescription: String) {
+  addArt(artId: $artId, artImage: $artImage, artDescription: $artDescription) {
+    artId
+    artAuthor
     _id
+    artDescription
+    artImage
   }
 }
 `;

@@ -9,30 +9,11 @@ import Auth from "../../utils/auth";
 
 const ArtForm = () => {
   const [artId, setArtId] = useState("");
-
+  const [artDescription, setArtDescription]= useState("");
+  const [artImage, setArtImage] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addArt, { error }] = useMutation(ADD_ART, {
-   /* update(cache, { data: { addArt } }) {
-      try {
-        const { art } = cache.readQuery({ query: QUERY_ART });
-
-        cache.writeQuery({
-          query: QUERY_ART,
-          data: { art: [addArt, ...art] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, art: [...me.art, addArt] } },
-      });
-    }, */ 
-  });
+  const [addArt, { error }] = useMutation(ADD_ART);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,12 +21,13 @@ const ArtForm = () => {
     // api fetch
     API.artobject(artId).then(async (res) => {
       console.log(res.data);
-      const paintingId = res.data.objectId
+      const paintingId = res.data.objectID
       try {
         const { data } = await addArt({
           variables: {
             artId: paintingId,
-            
+            artDescription: res.data.title, 
+            artImage: res.data.primaryImageSmall,
           },
         });
 

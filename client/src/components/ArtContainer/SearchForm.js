@@ -22,6 +22,13 @@ function SearchForm(props) {
         >
           Search
         </button>
+        <button
+          onClick={props.handleArtSubmit}
+          className="btn btn-primary"
+          type="submit"
+        >
+         Add to Gallery
+        </button>
       </div>
     </form>
   );

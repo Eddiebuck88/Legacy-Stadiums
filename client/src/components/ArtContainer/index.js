@@ -7,10 +7,18 @@ import Card from './Card';
 import SearchForm from './SearchForm';
 import ArtDetail from './ArtDetail';
 import API from '../../utils/API';
+import { useMutation } from "@apollo/client";
+
+import { ADD_ART } from "../../utils/mutations";
 
 const ArtContainer = () => {
   const [result, setResult] = useState({});
   const [search, setSearch] = useState('');
+  const [addArt, { error }] = useMutation(ADD_ART, {
+    onError: (error) => {
+      console.log(error)
+    }
+  });
 
   // When the search form is submitted, use the API.search method to search for the movie(s)
   const searchArt = (query) => 
@@ -38,7 +46,33 @@ const ArtContainer = () => {
     e.preventDefault();
     searchArt(search);
   };
+  const handleArtSubmit = async (event) => {
+    event.preventDefault();
+    console.log(result);
 
+    // api fetch
+    API.artobject(result.objectID).then(async (res) => {
+      console.log(res.data);
+      let paintingId = parseInt(res.data.objectID)
+      paintingId = paintingId.toString()
+      const artDescription = res.data.title
+      const artImage = res.data.primaryImageSmall
+      console.log(typeof paintingId,typeof artDescription,typeof artImage)
+      try {
+        const { data } = await addArt({
+          variables: {
+            artId: paintingId,
+            artDescription: artDescription,
+            artImage: artImage
+          },
+        });
+
+       
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  };
   // Destructure the result object to make the code more readable, assign them to empty strings to start
   const {
     title = '',
@@ -76,6 +110,7 @@ const ArtContainer = () => {
               value={search}
               handleInputChange={handleInputChange}
               handleFormSubmit={handleFormSubmit}
+              handleArtSubmit={handleArtSubmit}
             />
           </Card>
         </Col>
