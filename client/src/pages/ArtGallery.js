@@ -4,11 +4,11 @@ import { useQuery } from '@apollo/client';
 import ArtList from '../components/ArtList';
 import ArtContainer from '../components/ArtContainer';
 
-import { QUERY_GALLERY } from '../utils/queries';
+import { QUERY_ART } from '../utils/queries';
 
-const Gallery = () => {
-  const { loading, data } = useQuery(QUERY_GALLERY);
-  const art = data?.gallery || [];
+const ArtGallery = () => {
+  const { loading, data } = useQuery(QUERY_ART);
+  const art = data?.art || [];
 
   return (
     <main>
@@ -34,4 +34,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default ArtGallery;
