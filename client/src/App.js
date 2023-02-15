@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ArtContainer from './components/ArtContainer';
+import ArtGallery from './pages/ArtGallery';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -65,6 +66,10 @@ function App() {
               <Route 
                 path="/me" 
                 element={<Profile />}
+              />
+              <Route 
+                path="/gallery" 
+                element={<ArtGallery />} 
               />
               <Route 
                 path="/profiles/:username" 
