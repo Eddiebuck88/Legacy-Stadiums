@@ -33,6 +33,7 @@ export const QUERY_SINGLE_ART = gql`
       _id
       artText
       artAuthor
+      artImage
       createdAt
       comments {
         _id
