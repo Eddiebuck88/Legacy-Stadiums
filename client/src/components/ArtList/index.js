@@ -8,42 +8,42 @@ const ArtList = ({
   showUsername = true,
 }) => {
   if (!art.length) {
-    return <h3>No Comments Yet</h3>;
+    return <h3>No Gallery Yet</h3>;
   }
 
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
       {art &&
-       art.map((art) => (
-          <div key={art._id} className="card mb-3">
+        art.map((x) => (
+          <div key={x._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${art.artAuthor}`}
+                  to={`/profiles/${x.thoughtAuthor}`}
                 >
-                  {art.artAuthor} <br />
+                  {x.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this idea on {art.createdAt}
+                    {x.artTitle}
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this comment on {art.createdAt}
+                    You added this art on {x.createdAt}
                   </span>
                 </>
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{art.artText}</p>
+              <img src={x.artImage} />
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
-              to={`/art/${art._id}`}
+              to={`/art/${x._id}`}
             >
-              Join the discussion on this.
+              Join the discussion on this art piece.
             </Link>
           </div>
         ))}
