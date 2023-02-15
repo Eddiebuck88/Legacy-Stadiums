@@ -1,3 +1,5 @@
+//This code imports React and several necessary modules, including useState and useMutation from the Apollo client. It also imports the ADD_COMMENT mutation from a separate file. The Link component from react-router-dom is also imported, as well as the Auth utility from a separate file.
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
