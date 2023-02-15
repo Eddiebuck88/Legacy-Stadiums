@@ -21,6 +21,7 @@ export const QUERY_ART = gql`
       _id
       artText
       artAuthor
+      artImage
       createdAt
     }
   }
